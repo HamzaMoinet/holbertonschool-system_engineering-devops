@@ -63,7 +63,7 @@ Un schéma va être fourni pour illustrer cette architecture.
 ```mermaid
 graph TD
     A[Utilisateur] -->|Requête HTTP/HTTPS| B[Serveur]
-    B --> C[Web Server (Nginx)]
-    C --> D[Application Server]
-    D --> E[Base de données (MySQL)]
+    B -->|Gère les requêtes| C[Web Server (Nginx)]
+    C -->|Exécute le backend| D[Application Server]
+    D -->|Stocke les données| E[Base de données (MySQL)]
 ```
