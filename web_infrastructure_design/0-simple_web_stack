@@ -59,7 +59,7 @@ L'infrastructure est composée d'un unique serveur qui regroupe :
 ## 📌 5️⃣ Diagramme d'infrastructure
 
 Un schéma va être fourni pour illustrer cette architecture.
-""
+
 ```mermaid
 graph TD
     A[Utilisateur] -->|Requête HTTP/HTTPS| B[Serveur]
