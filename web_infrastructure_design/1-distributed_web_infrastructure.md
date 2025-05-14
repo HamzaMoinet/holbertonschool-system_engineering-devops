@@ -44,15 +44,26 @@ The web infrastructure consists of three servers and a load balancer to distribu
 
 ## Diagram of the Infrastructure
 
-```mermaid
 graph TD
-    User[User] -->|HTTP/HTTPS| LB[Load Balancer (HAProxy)]
-    LB --> S1[Server 1]
-    LB --> S2[Server 2]
-    S1 --> N1[Nginx Web Server]
-    S2 --> N2[Nginx Web Server]
-    N1 --> A1[Application Server]
-    N2 --> A2[Application Server]
-    A1 --> DBP[Primary Database (MySQL)]
-    A2 --> DBR[Replica Database (MySQL)]
-    DBP -->|Data Replication| DBR
+    User[User]
+    DNS[DNS]
+    LB[HAProxy Load Balancer]
+    Server1[Server 1]
+    Server2[Server 2]
+    Nginx1[Nginx]
+    Nginx2[Nginx]
+    App1[App Server]
+    App2[App Server]
+    Code1[App Code]
+    Code2[App Code]
+    DB1[MySQL Primary]
+    DB2[MySQL Replica]
+
+    User --> DNS --> LB
+    LB --> Server1
+    LB --> Server2
+    Server1 --> Nginx1 --> App1 --> Code1
+    Server2 --> Nginx2 --> App2 --> Code2
+    App1 --> DB1
+    App2 --> DB2
+    DB1 <---> DB2
