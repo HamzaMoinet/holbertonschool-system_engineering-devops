@@ -68,19 +68,24 @@ To monitor the web server's QPS:
 
 ```mermaid
 graph TD
-    User[User] -->|HTTPS| LB[Load Balancer (HAProxy)]
-    LB --> FW1[Firewall 1]
-    FW1 --> S1[Server 1]
-    LB --> FW2[Firewall 2]
-    FW2 --> S2[Server 2]
-    S1 --> N1[Nginx Web Server]
-    S2 --> N2[Nginx Web Server]
-    N1 --> A1[Application Server]
-    N2 --> A2[Application Server]
-    A1 --> DBP[Primary Database (MySQL)]
-    A2 --> DBR[Replica Database (MySQL)]
-    DBP -->|Data Replication| DBR
-    S1 --> MC1[Monitoring Client]
-    S2 --> MC2[Monitoring Client]
-    LB --> MC3[Monitoring Client]
+    Internet[Internet]
+    LB1[Load Balancer #1]
+    LB2[Load Balancer #2]
+    Web1[Web Server A Nginx]
+    Web2[Web Server B Nginx]
+    App1[App Server A]
+    App2[App Server B]
+    App3[App Server C New]
+    DB[MySQL Primary]
+
+    Internet --> LB1
+    LB1 --> LB2
+    LB2 --> Web1
+    LB2 --> Web2
+    Web1 --> App1
+    Web2 --> App2
+    Web2 --> App3
+    App1 --> DB
+    App2 --> DB
+    App3 --> DB
 ```
