@@ -1,4 +1,3 @@
-
 ""# Infrastructure Web à Serveur Unique
 
 ## 🎯 Objectif : Concevoir une infrastructure web simple qui héberge le site [www.foobar.com](http://www.foobar.com) sur un seul serveur.
@@ -67,6 +66,6 @@ graph TD
     B -->|Sert les fichiers statiques| C[Web Server (Nginx)]
     B -->|Exécute la logique backend| D[Application Server]
     B -->|Stocke et récupère les données| E[Base de données (MySQL)]
-    C --> D
-    D --> E
+    C -->|Communique avec| D
+    D -->|Interagit avec| E
 ```
