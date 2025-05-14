@@ -66,6 +66,6 @@ graph TD
     B -->|Sert les fichiers statiques| C[Web Server (Nginx)]
     B -->|Exécute la logique backend| D[Application Server]
     B -->|Stocke et récupère les données| E[Base de données (MySQL)]
-    C -->|Communique avec| D
-    D -->|Interagit avec| E
+    C --> D
+    D --> E
 ```
