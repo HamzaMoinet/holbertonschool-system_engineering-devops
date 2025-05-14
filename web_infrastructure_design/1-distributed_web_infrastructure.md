@@ -43,7 +43,7 @@ The web infrastructure consists of three servers and a load balancer to distribu
 ---
 
 ## Diagram of the Infrastructure
-
+```mermaid
 graph TD
     User[User]
     DNS[DNS]
@@ -67,3 +67,4 @@ graph TD
     App1 --> DB1
     App2 --> DB2
     DB1 <---> DB2
+```
