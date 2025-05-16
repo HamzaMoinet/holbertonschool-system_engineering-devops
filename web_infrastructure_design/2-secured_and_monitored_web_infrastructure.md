@@ -69,23 +69,31 @@ To monitor the web server's QPS:
 ```mermaid
 graph TD
     Internet[Internet]
-    LB1[Load Balancer #1]
-    LB2[Load Balancer #2]
-    Web1[Web Server A Nginx]
-    Web2[Web Server B Nginx]
-    App1[App Server A]
-    App2[App Server B]
-    App3[App Server C New]
-    DB[MySQL Primary]
+    FW1[Firewall #1]
+    LB1[HAProxy + SSL LB1]
+    FW2[Firewall #2]
+    FW3[Firewall #3]
+    ServerA[Server A]
+    ServerB[Server B]
+    NginxA[Nginx]
+    NginxB[Nginx]
+    AppA[App Server]
+    AppB[App Server]
+    DB1[MySQL Primary]
+    DB2[MySQL Replica]
+    MonA[Monitoring Agent A]
+    MonB[Monitoring Agent B]
+    MonLB[Monitoring Agent LB]
+    Sumo[Sumologic/Monitoring Platform]
 
-    Internet --> LB1
-    LB1 --> LB2
-    LB2 --> Web1
-    LB2 --> Web2
-    Web1 --> App1
-    Web2 --> App2
-    Web2 --> App3
-    App1 --> DB
-    App2 --> DB
-    App3 --> DB
+    Internet --> FW1 --> LB1
+    LB1 --> FW2 --> ServerA
+    LB1 --> FW3 --> ServerB
+    ServerA --> NginxA --> AppA --> DB1
+    ServerB --> NginxB --> AppB --> DB2
+    DB1 <--> DB2
+
+    MonLB --> Sumo
+    MonA --> Sumo
+    MonB --> Sumo
 ```
